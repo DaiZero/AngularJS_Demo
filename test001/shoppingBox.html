@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>RunJS</title>
+		<style type="text/css" scr="../Source/CSS/bootstrap.min.css"></style>
+	</head>
+	<body ng-app="myapp">
+	<div ng-controller="firsttablecontrol">
+
+		{{firstName}}
+	</div>
+	</body>
+	<script type="text/javascript" scr="../Source/JS/angular.js"></script>
+	<script>
+		var app = angular.module('myApp', []);
+app.controller('firsttablecontrol', function($scope) {
+    $scope.firstName = "John";
+    $scope.lastName = "Doe";
+});
+
+	</script>
+</html>
