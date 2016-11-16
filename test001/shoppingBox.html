@@ -1,23 +1,69 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>RunJS</title>
-		<style type="text/css" scr="../Source/CSS/bootstrap.min.css"></style>
-	</head>
-	<body ng-app="myapp">
-	<div ng-controller="firsttablecontrol">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../Source/CSS/bootstrap.min.css"/>
+</head>
+<body ng-app>
 
-		{{firstName}}
-	</div>
-	</body>
-	<script type="text/javascript" scr="../Source/JS/angular.js"></script>
-	<script>
-		var app = angular.module('myApp', []);
-app.controller('firsttablecontrol', function($scope) {
-    $scope.firstName = "John";
-    $scope.lastName = "Doe";
-});
+    <div ng-controller="cartController" class="container">
+        <table class="table" ng-show="cart.length">
+            <thead>
+                <tr>
+                    <th>产品编号</th>
+                    <th>产品名字</th>
+                    <th>购买数量</th>
+                    <th>产品单价</th>
+                    <th>产品总价</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in cart">
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>
+                        <button type="button" ng-click="reduce(item.id)" class="btn tn-primary">-</button>
+                        <input type="text" value="{{item.quantity}}" ng-model="item.quantity" >
+                        <button type="button" ng-click="add(item.id)" class="btn tn-primary">+</button>
+                    </td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.price * item.quantity}}</td>
+                    <td>
+                        <button type="button" ng-click="remove(item.id)" class="btn btn-danger">移除</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        总购买价
+                    </td>
+                    <td>
+                        {{totalPrice()}}
+                    </td>
+                    <td>
+                        总购买数量
+                    </td>
+                    <td>
+                        {{totalQuantity()}}
+                    </td>
+                    <td colspan="2">
+                        <button type="button" ng-click="cart = {}" class="btn btn-danger">清空购物车</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-	</script>
+        <p ng-show="!cart.length">您的购物车为空</p>
+    </div>
+    <script type="text/javascript">
+    var	age = prompt("请输入你的年龄:","20");
+if (age != null){
+alert("你今年" + age +"岁了!");
+}else{
+alert("你按了[取消]按钮");
+}
+    </script>
+<script type="text/javascript" src="../Source/JS/shoppingbox.js"></script>
+<script type="text/javascript" src="../Source/angular/angularjs.js"></script>
+</body>
 </html>
